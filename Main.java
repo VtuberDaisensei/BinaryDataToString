@@ -27,7 +27,7 @@ public class Main {
                 tmp = Integer.toHexString(inputStream.read());
                 if(tmp.length() == 1)
                     tmp = "0" + tmp;
-                System.out.print(tmp);
+                //System.out.print(tmp);
                 for(char c : tmp.toCharArray()) {
                     outputStream.write(c);
                 }
@@ -52,7 +52,7 @@ public class Main {
 
                 tmp = new String(c);
                 b = (byte)Integer.parseInt(tmp,16);
-                System.out.println(tmp);
+                //System.out.println(tmp);
                 outputStream.write(b);
             }
         }catch(Exception e){
