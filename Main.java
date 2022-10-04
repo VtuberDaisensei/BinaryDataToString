@@ -1,9 +1,13 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Main {
-    public static final String PICTURE_NAME = "アレキサンダー.png";
+    public static final String PICTURE_FOLDER = "picture\\";
+    public static final String BINTEXT_FOLDER = "binaryText\\";
+    public static final String PICTURE_NAME = PICTURE_FOLDER + "アレキサンダー.png";
     //public static final String PICTURE_NAME = "8440.png";
-    public static final String TEXT_FILE_NAME = "アレキサンダー.txt";
+    public static final String TEXT_FILE_NAME = PICTURE_FOLDER + "binaryText/アレキサンダー.txt";
     public static void main(String[] args){
         /*
         if(args.length > 2){
@@ -15,16 +19,17 @@ public class Main {
 
         //ToTextData(PICTURE_NAME,TEXT_FILE_NAME);
         //ToTextData("testFile.bin","testFile.txt");
-        ToTextData("0.png","0.txt");
-        ToTextData("4.png","4.txt");
-        ToTextData("5426.png","5426.txt");
+        ToTextData( PICTURE_FOLDER + "0.png", BINTEXT_FOLDER + "0.txt");
+        ToTextData( PICTURE_FOLDER + "4.png", BINTEXT_FOLDER + "4.txt");
+        ToTextData( PICTURE_FOLDER + "5426.png", BINTEXT_FOLDER + "5426.txt");
         //ToBinaryData(PICTURE_NAME,TEXT_FILE_NAME);
     }
 
     private static void ToTextData(String binaryFile,String textFile){
+
         try {
-            InputStream inputStream = new FileInputStream(binaryFile);
-            OutputStream outputStream = new FileOutputStream(textFile);
+            InputStream inputStream = Files.newInputStream(Paths.get(binaryFile));
+            OutputStream outputStream = Files.newOutputStream(Paths.get(textFile));
             String tmp;
             while(inputStream.available() > 0) {
                 tmp = Integer.toHexString(inputStream.read());
@@ -36,6 +41,7 @@ public class Main {
                 }
             }
             inputStream.close();
+            outputStream.close();
         }catch(Exception e){
             System.out.println(e.toString());
         }
@@ -43,8 +49,8 @@ public class Main {
 
     private static void ToBinaryData(String binaryFile,String textFile){
         try{
-            InputStream inputStream = new FileInputStream(textFile);
-            OutputStream outputStream = new FileOutputStream(binaryFile);
+            InputStream inputStream = Files.newInputStream(Paths.get(textFile));
+            OutputStream outputStream = Files.newOutputStream(Paths.get(binaryFile));
 
             String tmp;
             char[] c = new char[2];
@@ -58,6 +64,8 @@ public class Main {
                 //System.out.println(tmp);
                 outputStream.write(b);
             }
+            inputStream.close();
+            outputStream.close();
         }catch(Exception e){
             System.out.println(e.toString());
         }
