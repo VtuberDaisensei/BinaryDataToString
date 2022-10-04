@@ -15,7 +15,10 @@ public class Main {
 
         //ToTextData(PICTURE_NAME,TEXT_FILE_NAME);
         //ToTextData("testFile.bin","testFile.txt");
-        ToBinaryData(PICTURE_NAME,TEXT_FILE_NAME);
+        ToTextData("0.png","0.txt");
+        ToTextData("4.png","4.txt");
+        ToTextData("5426.png","5426.txt");
+        //ToBinaryData(PICTURE_NAME,TEXT_FILE_NAME);
     }
 
     private static void ToTextData(String binaryFile,String textFile){
